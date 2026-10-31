@@ -37,7 +37,7 @@ import { cn } from "@/lib/utils";
 
 export const SITE_NAME = "HelpingHands";
 
-const NAV_LINKS = [{ label: "Upcoming Events", icon: CalendarDays, href: "/events" }];
+const NAV_LINKS = [{ label: "Upcoming Events", icon: CalendarDays, href: "/upcomingEvent" }];
 
 const USER_LINKS = [
   { label: "Create Event", icon: CalendarPlus, href: "/createEvent" },

@@ -1,121 +1,90 @@
+import Image from "next/image";
 import Link from "next/link";
-import {
-  CalendarDays,
-  HandHeart,
-  MapPin,
-  Megaphone,
-  Shirt,
-  Stethoscope,
-  Trash2,
-  Users,
-} from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import type { EventCategory, UpcomingEvent } from "@/lib/events";
+import { CalendarDays, MapPin, HeartPulse } from "lucide-react";
+import { UpcomingEvent } from "@/lib/type";
 
-const CATEGORY_CONFIG: Record<
-  EventCategory,
-  { label: string; className: string; iconClass: string; icon: typeof HandHeart }
-> = {
-  donation: {
-    label: "Donation",
-    className: "bg-primary text-primary-foreground",
-    iconClass: "text-primary",
-    icon: HandHeart,
-  },
-  clothes: {
-    label: "Cloth Distribution",
-    className: "bg-secondary text-secondary-foreground",
-    iconClass: "text-chart-2",
-    icon: Shirt,
-  },
-  cleanup: {
-    label: "Cleanup Drive",
-    className: "bg-chart-4/10 text-chart-4",
-    iconClass: "text-chart-4",
-    icon: Trash2,
-  },
-  treatment: {
-    label: "Free Treatment",
-    className: "bg-chart-3/10 text-chart-3",
-    iconClass: "text-chart-3",
-    icon: Stethoscope,
-  },
-  awareness: {
-    label: "Awareness Rally",
-    className: "bg-chart-5/10 text-chart-5",
-    iconClass: "text-chart-5",
-    icon: Megaphone,
-  },
-};
-
-/** Big calendar date block shown on every event card. */
-function DateBlock({ iso }: { iso: string }) {
-  const date = new Date(iso);
-  const month = date.toLocaleDateString("en-US", { month: "short" });
-  const day = date.getDate();
-
-  return (
-    <div className="flex size-14 shrink-0 flex-col items-center justify-center rounded-xl bg-primary/10 text-primary">
-      <span className="text-[0.625rem] font-bold tracking-widest uppercase">
-        {month}
-      </span>
-      <span className="text-lg leading-none font-extrabold">{day}</span>
-    </div>
-  );
+interface EventCardProps {
+  event: UpcomingEvent;
 }
 
-export function EventCard({ event }: { event: UpcomingEvent }) {
-  const category = CATEGORY_CONFIG[event.category];
-
+const EventCard = ({ event }: EventCardProps) => {
   return (
-    <Link
-      href={`/events#${event.id}`}
-      className="group block"
-    >
-      <Card className="justify-between transition-all hover:-translate-y-1 hover:ring-primary/40!">
-      {/* media area — themed placeholder until real images are attached */}
-      <div className="relative grid h-36 place-items-center bg-gradient-to-br from-accent/50 to-muted/20">
-        <category.icon
-          aria-hidden
-          className={
-            "size-12 opacity-20 transition-transform duration-300 group-hover:scale-110 " +
-            category.iconClass
-          }
+    <div className="group overflow-hidden rounded-2xl border border-green-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+
+      {/* Event Image */}
+      <div className="relative h-52 w-full overflow-hidden">
+        <Image
+          src={event.imageUrl}
+          alt={event.title}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <Badge
-          className={"absolute top-3 left-3 h-6 px-3 " + category.className}
-        >
-          {category.label}
-        </Badge>
+
+        <span className="absolute left-4 top-4 rounded-full bg-green-600 px-4 py-1.5 text-xs font-semibold text-white">
+          Free Treatment
+        </span>
       </div>
 
-      <CardContent className="flex items-center gap-4">
-        <DateBlock iso={event.date} />
-        <div className="min-w-0 space-y-1.5">
-          <h3 className="line-clamp-2 font-heading text-base leading-snug font-semibold">
+      {/* Card Content */}
+      <div className="space-y-4 p-5">
+
+        <div>
+          <div className="mb-2 flex items-center gap-2 text-sm font-medium text-green-700">
+            <HeartPulse size={17} />
+            Healthcare Campaign
+          </div>
+
+          <h2 className="text-xl font-bold text-gray-900 transition-colors group-hover:text-green-700">
             {event.title}
-          </h3>
-          <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
-            <MapPin className="size-3.5 shrink-0" />
-            <span className="truncate">{event.location}</span>
+          </h2>
+
+          <p className="mt-2 line-clamp-2 text-sm leading-6 text-gray-500">
+            {event.description}
           </p>
         </div>
-      </CardContent>
 
-      <CardFooter className="justify-between">
-        <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
-          <Users className="size-3.5" />
-          {event.participants} joined
-        </p>
-        <p className="flex items-center gap-1.5 text-xs font-semibold text-primary">
-          <CalendarDays className="size-3.5" />
-          {new Date(event.date).toLocaleDateString("en-US", {
-            weekday: "short",
-          })}
-        </p>
-      </CardFooter>
-      </Card>
-    </Link>
+        {/* Event Information */}
+        <div className="space-y-3 border-y border-gray-100 py-4">
+
+          <div className="flex items-center gap-3 text-sm text-gray-600">
+            <CalendarDays size={18} className="text-green-600" />
+            <span>
+              {new Date(event.date).toLocaleDateString("en-US", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3 text-sm text-gray-600">
+            <MapPin size={18} className="text-green-600" />
+            <span>{event.location}</span>
+          </div>
+
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex gap-3 pt-1">
+
+          <Link
+            href={`/events/${event._id}`}
+            className="flex-1 rounded-lg border border-green-600 px-3 py-2.5 text-center text-sm font-semibold text-green-700 transition hover:bg-green-50"
+          >
+            View Event
+          </Link>
+
+          <Link
+            href={`/events/${event._id}/join`}
+            className="flex-1 rounded-lg bg-green-600 px-3 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-green-700"
+          >
+            Join Event
+          </Link>
+
+        </div>
+      </div>
+    </div>
   );
-}
+};
+
+export default EventCard;

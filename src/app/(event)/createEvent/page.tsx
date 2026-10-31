@@ -17,6 +17,8 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "@/components/ui/toast";
 
 type TravelPackagePayload = {
   name: string;
@@ -44,6 +46,8 @@ const fieldClassName = "h-10 rounded-md bg-muted/50";
 const fieldRowClassName = "grid gap-5 md:grid-cols-2";
 
 export default function CreateEventPage() {
+    const {data:session}=authClient.useSession()
+
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
@@ -54,53 +58,45 @@ export default function CreateEventPage() {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
+    const data= Object.fromEntries(formData.entries())
+    console.log(data);
 
-    const payload: TravelPackagePayload = {
-      name: String(formData.get("name") ?? "").trim(),
-      country: String(formData.get("country") ?? "").trim(),
-      // Base UI Select only contributes "category" to FormData after a
-      // value is chosen; fall back to the placeholder.
-      category: String(formData.get("category") || categories[0]),
-      priceUsd: Number(formData.get("priceUsd") ?? 0),
-      duration: String(formData.get("duration") ?? "").trim(),
-      departureDate: String(formData.get("departureDate") ?? ""),
-      imageUrl: String(formData.get("imageUrl") ?? "").trim(),
-      description: String(formData.get("description") ?? "").trim(),
-    };
+
+    const createEventData= {
+        ...data,
+        eventCreated: new Date(),
+        userEmail: session?.user.email
+    }
 
     setIsSubmitting(true);
     setError(null);
 
-    try {
       const res = await fetch("http://localhost:5000/createEvent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(createEventData),
       });
+    //   const resData= await res.json()
+      
 
       // Read the body as text first: on failures the Express API returns an
       // HTML error page, and res.json() would throw before we see the
       // status. Check res.ok BEFORE trying to parse the body as JSON.
-      const body = await res.text();
+    //   const body = await res.text();
 
       if (!res.ok) {
         throw new Error(
-          `Failed to add the package (HTTP ${res.status}). ${body.startsWith("<") ? res.statusText : body}`,
+          `Failed to add event`
         );
       }
-
+       toast.add({
+                  title: "successful!",
+                  description: "Event has been created",
+                  type: "success",
+                  timeout: 3000,
+              })
       router.push("/upcomingEvent");
-    } catch (err) {
-      // Without this catch any failure silently skipped the redirect:
-      // the throw became an unhandled rejection and router.push never ran.
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Something went wrong. Please try again.",
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
+    
   };
 
   return (
