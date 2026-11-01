@@ -1,13 +1,40 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import { CalendarDays, MapPin, HeartPulse } from "lucide-react";
 import { UpcomingEvent } from "@/lib/type";
+import { Button } from "../ui/button";
+import { authClient } from "@/lib/auth-client";
 
 interface EventCardProps {
   event: UpcomingEvent;
 }
 
 const EventCard = ({ event }: EventCardProps) => {
+
+  const {data: session}= authClient.useSession()
+  const user= session?.user
+  
+  const joinedData={
+    ...event,
+    userName: user?.name,
+    userEmail: user?.email,
+    joinedDate: new Date()
+  }
+  console.log(joinedData);
+
+
+
+  const handleJoinEvent=async()=>{
+    const res= await fetch('http://localhost:5000/joinedEvent',{
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body:JSON.stringify(joinedData)
+    })
+    const resData= await res.json()
+    console.log(resData);
+
+  }
   return (
     <div className="group overflow-hidden rounded-2xl border border-green-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
 
@@ -74,13 +101,10 @@ const EventCard = ({ event }: EventCardProps) => {
           >
             View Event
           </Link>
-
-          <Link
-            href={`/events/${event._id}/join`}
-            className="flex-1 rounded-lg bg-green-600 px-3 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-green-700"
-          >
+          <Button onClick={handleJoinEvent} className="flex-1 rounded-lg bg-green-600 px-3 py-5 text-center text-sm font-semibold text-white transition hover:bg-green-700">
             Join Event
-          </Link>
+          </Button>
+          
 
         </div>
       </div>
