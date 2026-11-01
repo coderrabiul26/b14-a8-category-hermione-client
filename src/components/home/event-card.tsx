@@ -5,6 +5,8 @@ import { CalendarDays, MapPin, HeartPulse } from "lucide-react";
 import { UpcomingEvent } from "@/lib/type";
 import { Button } from "../ui/button";
 import { authClient } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
+import { toast } from "../ui/toast";
 
 interface EventCardProps {
   event: UpcomingEvent;
@@ -25,16 +27,29 @@ const EventCard = ({ event }: EventCardProps) => {
 
 
 
-  const handleJoinEvent=async()=>{
-    const res= await fetch('http://localhost:5000/joinedEvent',{
-      method: 'POST',
-      headers: { "Content-Type": "application/json" },
-      body:JSON.stringify(joinedData)
-    })
-    const resData= await res.json()
-    console.log(resData);
-
+  const handleJoinEvent = async () => {
+  if (!user) {
+    alert("Please login to join this event");
+    return;
   }
+
+  const res = await fetch("http://localhost:5000/joinedEvent", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(joinedData),
+  });
+  const resData = await res.json();
+   toast.add({
+            title: "Event joining successful!",
+            description: "You successfully joined the event",
+            type: "success",
+            timeout: 3000,
+        })
+  redirect('/upcomingEvent')
+};
+
   return (
     <div className="group overflow-hidden rounded-2xl border border-green-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
 
