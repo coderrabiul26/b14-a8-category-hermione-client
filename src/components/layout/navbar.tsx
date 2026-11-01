@@ -41,7 +41,7 @@ const NAV_LINKS = [{ label: "Upcoming Events", icon: CalendarDays, href: "/upcom
 
 const USER_LINKS = [
   { label: "Create Event", icon: CalendarPlus, href: "/createEvent" },
-  { label: "Manage Events", icon: ClipboardList, href: "/events/manage" },
+  { label: "Manage Events", icon: ClipboardList, href: "/manageEvent" },
   { label: "Joined Events", icon: Users, href: "/joinedEvent" },
 ];
 

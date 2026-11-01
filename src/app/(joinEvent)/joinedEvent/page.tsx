@@ -1,9 +1,7 @@
 import EventCard from '@/components/home/event-card';
 import JoinedEventCard from '@/components/joinedEvent/joined-event-card';
 import { auth } from '@/lib/auth';
-import { Dice1 } from 'lucide-react';
 import { headers } from 'next/headers';
-import { join } from 'path';
 
 const JoinedEventPae = async() => {
 
