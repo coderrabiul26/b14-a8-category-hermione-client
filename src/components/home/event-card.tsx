@@ -15,6 +15,7 @@ const EventCard = ({ event }: EventCardProps) => {
       <div className="relative h-52 w-full overflow-hidden">
         <Image
           src={event.imageUrl}
+          sizes=""
           alt={event.title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -68,7 +69,7 @@ const EventCard = ({ event }: EventCardProps) => {
         <div className="flex gap-3 pt-1">
 
           <Link
-            href={`/events/${event._id}`}
+            href={`/eventDetails/${event._id}`}
             className="flex-1 rounded-lg border border-green-600 px-3 py-2.5 text-center text-sm font-semibold text-green-700 transition hover:bg-green-50"
           >
             View Event

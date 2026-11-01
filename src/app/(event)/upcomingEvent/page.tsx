@@ -1,6 +1,7 @@
 
 
 import EventCard from "@/components/home/event-card";
+import { UpcomingEvent } from "@/lib/type";
 
 // export const metadata: Metadata = {
 //   title: "Upcoming Events — HelpingHands",
