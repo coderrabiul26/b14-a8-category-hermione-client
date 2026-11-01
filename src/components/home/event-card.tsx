@@ -23,7 +23,6 @@ const EventCard = ({ event }: EventCardProps) => {
     userEmail: user?.email,
     joinedDate: new Date()
   }
-  console.log(joinedData);
 
 
 

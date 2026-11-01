@@ -1,23 +1,10 @@
 
 
 import EventCard from "@/components/home/event-card";
-import { UpcomingEvent } from "@/lib/type";
 
-// export const metadata: Metadata = {
-//   title: "Upcoming Events — HelpingHands",
-//   description:
-//     "Browse all upcoming donation, cloth distribution, cleanup, and free treatment events organized by the HelpingHands community.",
-// };
-
-/**
- * Framework page — currently renders the same sample data as the homepage.
- * Once MongoDB is connected this page will list events fetched from the
- * database (e.g. sorted by date) instead of the placeholder data layer.
- */
 export default async function EventsPage() {
   const res= await fetch('http://localhost:5000/upcomingEvent')
   const eventData= await res.json()
-  console.log(eventData);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 md:px-6">

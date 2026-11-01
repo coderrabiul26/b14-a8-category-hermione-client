@@ -43,7 +43,7 @@ const EventDetailsPage = async ({ params }) => {
 
         {/* Back Button */}
         <Link
-          href="/upcomingEvents"
+          href="/upcomingEvent"
           className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-green-700 hover:text-green-900"
         >
           <ArrowLeft size={18} />

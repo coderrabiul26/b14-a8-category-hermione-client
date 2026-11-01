@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -20,17 +21,6 @@ import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "@/components/ui/toast";
 
-type TravelPackagePayload = {
-  name: string;
-  country: string;
-  category: string;
-  priceUsd: number;
-  duration: string;
-  departureDate: string;
-  imageUrl: string;
-  description: string;
-};
-
 const categories = [
   "Cleanup",
   "Plantation",
@@ -46,7 +36,12 @@ const fieldClassName = "h-10 rounded-md bg-muted/50";
 const fieldRowClassName = "grid gap-5 md:grid-cols-2";
 
 export default function CreateEventPage() {
-    const {data:session}=authClient.useSession()
+
+  const {data:session}=authClient.useSession()
+
+  // Get today's date in local YYYY-MM-DD format
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
 
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -58,45 +53,50 @@ export default function CreateEventPage() {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    const data= Object.fromEntries(formData.entries())
-    console.log(data);
+    const data = Object.fromEntries(formData.entries());
 
-
-    const createEventData= {
-        ...data,
-        eventCreated: new Date(),
-        userEmail: session?.user.email
+    // Validate event date before sending to the server
+    if (!data.date || String(data.date) < today) {
+      setError("Please select today or a future date.");
+      return;
     }
 
     setIsSubmitting(true);
     setError(null);
 
+    const createEventData = {
+      ...data,
+      eventCreated: new Date(),
+      userEmail: session?.user.email
+    };
+
+    try {
       const res = await fetch("http://localhost:5000/createEvent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(createEventData),
       });
-    //   const resData= await res.json()
-      
-
-      // Read the body as text first: on failures the Express API returns an
-      // HTML error page, and res.json() would throw before we see the
-      // status. Check res.ok BEFORE trying to parse the body as JSON.
-    //   const body = await res.text();
 
       if (!res.ok) {
-        throw new Error(
-          `Failed to add event`
-        );
+        throw new Error("Failed to add event");
       }
-       toast.add({
-                  title: "successful!",
-                  description: "Event has been created",
-                  type: "success",
-                  timeout: 3000,
-              })
+
+      toast.add({
+        title: "successful!",
+        description: "Event has been created",
+        type: "success",
+        timeout: 3000,
+      });
+
       router.push("/upcomingEvent");
-    
+
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Something went wrong."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -150,7 +150,9 @@ export default function CreateEventPage() {
               id="event-date"
               name="date"
               type="date"
+              min={today}
               className={fieldClassName}
+              required
             />
           </div>
 

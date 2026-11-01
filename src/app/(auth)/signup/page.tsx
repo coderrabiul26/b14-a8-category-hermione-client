@@ -137,9 +137,7 @@ export default function SignupForm() {
             <FieldGroup>
               <Field>
                 <Button type="submit">Create Account</Button>
-                <Button variant="outline" type="button">
-                  Sign up with Google
-                </Button>
+               
                 <FieldDescription className="px-6 text-center">
                   Already have an account? <a href="/signin">Sign in</a>
                 </FieldDescription>

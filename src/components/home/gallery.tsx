@@ -1,20 +1,19 @@
 import { Shirt, Trash2, Sprout, Stethoscope, HandHeart, Megaphone } from "lucide-react";
+import { Url } from "next/dist/shared/lib/router/router";
 
 interface GalleryPhoto {
   caption: string;
   label: string;
-  icon: typeof Shirt;
-  /** Swap for a real photo URL later, e.g. "/images/gallery/cleanup-01.jpg" */
   image?: string;
 }
 
 const PHOTOS: GalleryPhoto[] = [
-  { caption: "Winter cloth distribution", label: "Mirpur, Dhaka", icon: Shirt },
-  { caption: "Neighborhood cleanup drive", label: "Turag Riverside", icon: Trash2 },
-  { caption: "Free eye & health camp", label: "Savar Community Center", icon: Stethoscope },
-  { caption: "Harvest support for farmers", label: "Gazipur Village", icon: Sprout },
-  { caption: "Food donation run", label: "Keraniganj", icon: HandHeart },
-  { caption: "Climate awareness rally", label: "University of Dhaka", icon: Megaphone },
+  { caption: "Winter cloth distribution", label: "Mirpur, Dhaka", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsc00868TenUnyCLFOyR4QcnBehJGz2WTDwM8E5Uq6UQ&s=10' },
+  { caption: "Neighborhood cleanup drive", label: "Turag Riverside", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtcNeagac442-vbMLQHA--yEx83PDgceBvExf4CFStlA&s=10'},
+  { caption: "Free eye & health camp", label: "Savar Community Center", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMz41jWSORNjiVxduohJuUKiuWwWklxOWPMKMEVJyQQw&s=10' },
+  { caption: "Harvest support for farmers", label: "Gazipur Village", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShM_VtGxQXJGvgbtSrCveR2xfthHBkGulf8uIGd1Pf7Q&s=10' },
+  { caption: "Food donation run", label: "Keraniganj", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW4sJ8wlaBmDNe4uIj0MkcqpguvPetveuJXFCF2mR3Gg&s=10' },
+  { caption: "Climate awareness rally", label: "University of Dhaka", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlB1hfmlZLmOM2-9RvRK0ve-_9b7mS-duBNoaBgVlsrg&s=10' },
 ];
 
 export function Gallery() {
@@ -52,7 +51,7 @@ export function Gallery() {
               />
             ) : (
               <span className="absolute inset-0 grid place-items-center">
-                <photo.icon
+                <photo.imageUrl
                   aria-hidden
                   className="size-8 text-primary/30 transition-transform duration-300 group-hover:scale-110"
                 />
