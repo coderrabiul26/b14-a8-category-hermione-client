@@ -20,6 +20,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "@/components/ui/toast";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const categories = [
   "Cleanup",
@@ -70,10 +71,14 @@ export default function CreateEventPage() {
       userEmail: session?.user.email
     };
 
+    const token=await getTokenFromClient()
+
     try {
       const res = await fetch("http://localhost:5000/createEvent", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+          authorization: `Bearer ${token}`
+         },
         body: JSON.stringify(createEventData),
       });
 
