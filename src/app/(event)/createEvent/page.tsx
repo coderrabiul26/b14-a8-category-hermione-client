@@ -111,6 +111,7 @@ export default function CreateEventPage() {
               name="title"
               placeholder="Name of event"
               className={fieldClassName}
+              required
             />
           </div>
 
@@ -122,6 +123,7 @@ export default function CreateEventPage() {
                 name="location"
                 placeholder="Add location"
                 className={fieldClassName}
+                required
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -164,6 +166,7 @@ export default function CreateEventPage() {
               type="url"
               placeholder="https://example.com/image.jpg"
               className={fieldClassName}
+              required
             />
           </div>
 

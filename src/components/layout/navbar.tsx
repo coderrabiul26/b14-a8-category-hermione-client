@@ -34,6 +34,7 @@ import { toast } from "@/components/ui/toast";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 
 export const SITE_NAME = "HelpingHands";
 
@@ -113,8 +114,9 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* Right — login / user avatar (desktop) */}
+        {/* Right — theme toggle, login / user avatar (desktop) */}
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           {isPending ? null : user ? (
             <div className="flex items-center gap-1">
               <UserAvatarMenu user={user} />
@@ -170,6 +172,12 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <div className="flex items-center justify-between rounded-lg px-3 py-2.5">
+              <span className="text-sm font-semibold text-muted-foreground">
+                Theme
+              </span>
+              <ThemeToggle />
+            </div>
             {isPending ? null : user ? (
               <div className="mt-1 flex items-center gap-1">
                 <UserAvatarMenu user={user} />

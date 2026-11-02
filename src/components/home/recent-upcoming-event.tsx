@@ -2,10 +2,13 @@
 
 import EventCard from "@/components/home/event-card";
 import { UpcomingEvent } from "@/lib/type";
+import { filterUpcomingEvents } from "@/lib/event-date";
 
 export default async function RecentUpcomingEvent() {
   const res= await fetch('http://localhost:5000/recentUpcomingEvent')
-  const eventData: UpcomingEvent[] = await res.json()
+  // The server limits to 6 (assignment condition) — only past-date
+  // events are filtered on the client side.
+  const eventData: UpcomingEvent[] = filterUpcomingEvents(await res.json())
  
 
   return (
