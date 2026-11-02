@@ -4,50 +4,14 @@ import Link from "next/link";
 import { CalendarDays, MapPin, HeartPulse } from "lucide-react";
 import { UpcomingEvent } from "@/lib/type";
 import { Button } from "../ui/button";
-import { authClient } from "@/lib/auth-client";
-import { redirect } from "next/navigation";
-import { toast } from "../ui/toast";
+import { useJoinEvent } from "@/components/joinedEvent/use-join-event";
 
 interface EventCardProps {
   event: UpcomingEvent;
 }
 
 const EventCard = ({ event }: EventCardProps) => {
-
-  const {data: session}= authClient.useSession()
-  const user= session?.user
-  
-  const joinedData={
-    ...event,
-    userName: user?.name,
-    userEmail: user?.email,
-    joinedDate: new Date()
-  }
-
-
-
-  const handleJoinEvent = async () => {
-  if (!user) {
-    alert("Please login to join this event");
-    return;
-  }
-
-  const res = await fetch("http://localhost:5000/joinedEvent", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(joinedData),
-  });
-  const resData = await res.json();
-   toast.add({
-            title: "Event joining successful!",
-            description: "You successfully joined the event",
-            type: "success",
-            timeout: 3000,
-        })
-  redirect('/upcomingEvent')
-};
+  const { joinEvent, isSubmitting, hasJoined } = useJoinEvent(event);
 
   return (
     <div className="group overflow-hidden rounded-2xl border border-green-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
@@ -115,8 +79,12 @@ const EventCard = ({ event }: EventCardProps) => {
           >
             View Event
           </Link>
-          <Button onClick={handleJoinEvent} className="flex-1 rounded-lg bg-green-600 px-3 py-5 text-center text-sm font-semibold text-white transition hover:bg-green-700">
-            Join Event
+          <Button
+            onClick={joinEvent}
+            disabled={isSubmitting || hasJoined}
+            className="flex-1 rounded-lg bg-green-600 px-3 py-5 text-center text-sm font-semibold text-white transition hover:bg-green-700"
+          >
+            {isSubmitting ? "Joining..." : hasJoined ? "Joined" : "Join Event"}
           </Button>
           
 

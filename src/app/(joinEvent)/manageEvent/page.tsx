@@ -1,6 +1,7 @@
 import EventCard from '@/components/home/event-card';
 import JoinedEventCard from '@/components/joinedEvent/joined-event-card';
 import ManageEventCard from '@/components/manageEvent/manage-event-card';
+import { UpcomingEvent } from "@/lib/type";
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 
@@ -12,8 +13,8 @@ const ManageEventPae = async() => {
     const user= session?.user
 
 
-    const res=await fetch(`http://localhost:5000/joinedEvent/${user?.email} `)
-    const eventData= await res.json()
+    const res=await fetch(`http://localhost:5000/createdEvent/${user?.email}`)
+    const eventData: UpcomingEvent[] = await res.json()
    
     
     return (

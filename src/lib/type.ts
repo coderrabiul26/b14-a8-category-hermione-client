@@ -9,4 +9,6 @@ export interface UpcomingEvent {
   description: string;
   eventCreated: string;
   userEmail: string;
+  /** Only present on joined-event records: _id of the original event */
+  eventId?: string;
 }

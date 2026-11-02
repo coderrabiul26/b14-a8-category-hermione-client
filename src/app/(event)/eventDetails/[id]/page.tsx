@@ -1,7 +1,6 @@
-
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import {
   CalendarDays,
   MapPin,
@@ -15,7 +14,6 @@ import {
   HandHeart,
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -23,8 +21,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import JoinEventButton from "@/components/joinedEvent/join-event-button";
 
-const EventDetailsPage = async ({ params }) => {
+const EventDetailsPage = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
   const { id } = await params;
 
   const res = await fetch(
@@ -32,10 +35,14 @@ const EventDetailsPage = async ({ params }) => {
   );
 
   if (!res.ok) {
+    if (res.status === 404) {
+      notFound();
+    }
     throw new Error("Failed to fetch event details");
   }
 
   const eventData = await res.json();
+
 
   return (
     <main className="min-h-screen bg-green-50/40 py-10">
@@ -238,14 +245,7 @@ const EventDetailsPage = async ({ params }) => {
                   </p>
                 </div>
 
-                <Button
-                  className="w-full bg-green-600 font-semibold text-white hover:bg-green-700"
-                >
-                  <Link className="flex items-center" href={`/events/${eventData._id}/join`}>
-                    <HandHeart className="mr-2" size={18} />
-                    Join This Event
-                  </Link>
-                </Button>
+                <JoinEventButton eventData={eventData}></JoinEventButton>
 
                 <p className="mt-3 text-center text-xs text-green-700">
                   Your time and kindness can change lives.

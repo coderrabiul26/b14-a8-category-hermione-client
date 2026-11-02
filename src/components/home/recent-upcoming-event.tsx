@@ -1,10 +1,11 @@
 
 
 import EventCard from "@/components/home/event-card";
+import { UpcomingEvent } from "@/lib/type";
 
 export default async function RecentUpcomingEvent() {
   const res= await fetch('http://localhost:5000/recentUpcomingEvent')
-  const eventData= await res.json()
+  const eventData: UpcomingEvent[] = await res.json()
  
 
   return (

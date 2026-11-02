@@ -6,6 +6,7 @@ type TJoinedEventCardProps={
     event: UpcomingEvent
 }
 const JoinedEventCard = ({event}:TJoinedEventCardProps) => {
+
     return (
        <div className="group overflow-hidden rounded-2xl border border-green-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
 
@@ -63,7 +64,7 @@ const JoinedEventCard = ({event}:TJoinedEventCardProps) => {
         <div className="flex gap-3 pt-1">
 
           <Link
-            href={`/eventDetails/${event._id}`}
+            href={`/eventDetails/${event.eventId ?? event._id}`}
             className="flex-1 rounded-lg border border-green-600 px-3 py-2.5 text-center text-sm font-semibold text-green-700 transition hover:bg-green-50"
           >
             View Event

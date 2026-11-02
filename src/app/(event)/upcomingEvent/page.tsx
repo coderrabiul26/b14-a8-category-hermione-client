@@ -1,10 +1,26 @@
 
 
 import EventCard from "@/components/home/event-card";
+import { UpcomingEvent } from "@/lib/type";
+
+/** Local "YYYY-MM-DD" key (en-CA gives ISO-style dates) */
+const todayKey = new Date().toLocaleDateString("en-CA");
+
+const getEventDateKey = (event: UpcomingEvent) => {
+  const value = event.date;
+  if (typeof value === "string") return value.slice(0, 10);
+  return value.toISOString().slice(0, 10);
+};
 
 export default async function EventsPage() {
   const res= await fetch('http://localhost:5000/upcomingEvent')
-  const eventData= await res.json()
+  const eventData: UpcomingEvent[] = await res.json()
+
+  // Lexicographic comparison works for "YYYY-MM-DD" keys — keeps events
+  // from today onward and hides past-date events.
+  const upcomingEvents = eventData.filter(
+    (event) => getEventDateKey(event) >= todayKey
+  );
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 md:px-6">
@@ -22,10 +38,16 @@ export default async function EventsPage() {
       </header>
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {eventData.map((event) => (
+        {upcomingEvents.map((event) => (
           <EventCard key={event._id} event={event} />
         ))}
       </div>
+
+      {upcomingEvents.length === 0 && (
+        <p className="mt-10 text-center text-muted-foreground">
+          No upcoming events right now. Check back soon!
+        </p>
+      )}
     </div>
   );
 }

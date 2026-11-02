@@ -1,5 +1,4 @@
 import { Shirt, Trash2, Sprout, Stethoscope, HandHeart, Megaphone } from "lucide-react";
-import { Url } from "next/dist/shared/lib/router/router";
 
 interface GalleryPhoto {
   caption: string;
@@ -51,10 +50,9 @@ export function Gallery() {
               />
             ) : (
               <span className="absolute inset-0 grid place-items-center">
-                <photo.imageUrl
-                  aria-hidden
-                  className="size-8 text-primary/30 transition-transform duration-300 group-hover:scale-110"
-                />
+                <span className="font-heading text-lg font-bold text-primary/30 transition-transform duration-300 group-hover:scale-110">
+                  {photo.label}
+                </span>
               </span>
             )}
 

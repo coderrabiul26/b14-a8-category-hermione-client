@@ -1,5 +1,6 @@
 import EventCard from '@/components/home/event-card';
 import JoinedEventCard from '@/components/joinedEvent/joined-event-card';
+import { UpcomingEvent } from '@/lib/type';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 
@@ -11,9 +12,9 @@ const JoinedEventPae = async() => {
     const user= session?.user
 
 
-    const res=await fetch(`http://localhost:5000/joinedEvent/${user?.email} `)
-    const joinedEventData= await res.json()
-   
+
+    const res=await fetch(`http://localhost:5000/joinedEvent/${user?.email}`)
+    const joinedEventData: UpcomingEvent[] = await res.json()
     
     return (
         <div className='mx-auto max-w-7xl px-4 py-12 md:px-6'>

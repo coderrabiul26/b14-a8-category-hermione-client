@@ -173,7 +173,7 @@ const EditEvent = ({ event }: TEditEventProps) => {
 
               <Select
                 value={selectedType}
-                onValueChange={(value) => setSelectedType(value)}
+                onValueChange={(value) => setSelectedType(value ?? "")}
               >
                 <SelectTrigger
                   id="event-type"
