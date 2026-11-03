@@ -77,7 +77,7 @@ export function Navbar() {
       type: "success",
       timeout: 3000,
     });
-    router.push("/signin");
+    router.push("/");
     router.refresh();
   };
 
