@@ -68,7 +68,7 @@ if (error) {
   return (
     <Card className="mx-auto w-full max-w-5xl px-4 py-14 sm:px-10">
       <CardHeader>
-        <CardTitle className="text-3xl font-bold">Sign in to your account</CardTitle>
+        <CardTitle className="text-3xl font-bold">Sign in</CardTitle>
         <CardDescription>
           Enter your information below to sign in to your account
         </CardDescription>
