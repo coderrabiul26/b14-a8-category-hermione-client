@@ -7,12 +7,12 @@ interface GalleryPhoto {
 }
 
 const PHOTOS: GalleryPhoto[] = [
-  { caption: "Winter cloth distribution", label: "Mirpur, Dhaka", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsc00868TenUnyCLFOyR4QcnBehJGz2WTDwM8E5Uq6UQ&s=10' },
-  { caption: "Neighborhood cleanup drive", label: "Turag Riverside", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtcNeagac442-vbMLQHA--yEx83PDgceBvExf4CFStlA&s=10'},
-  { caption: "Free eye & health camp", label: "Savar Community Center", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMz41jWSORNjiVxduohJuUKiuWwWklxOWPMKMEVJyQQw&s=10' },
-  { caption: "Harvest support for farmers", label: "Gazipur Village", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShM_VtGxQXJGvgbtSrCveR2xfthHBkGulf8uIGd1Pf7Q&s=10' },
-  { caption: "Food donation run", label: "Keraniganj", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW4sJ8wlaBmDNe4uIj0MkcqpguvPetveuJXFCF2mR3Gg&s=10' },
-  { caption: "Climate awareness rally", label: "University of Dhaka", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlB1hfmlZLmOM2-9RvRK0ve-_9b7mS-duBNoaBgVlsrg&s=10' },
+  { caption: "Winter cloth distribution", label: "Shimulia Village, Rangpur", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsc00868TenUnyCLFOyR4QcnBehJGz2WTDwM8E5Uq6UQ&s=10' },
+  { caption: "Neighborhood donation drive", label: "Turag,Gazipur", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtcNeagac442-vbMLQHA--yEx83PDgceBvExf4CFStlA&s=10'},
+  { caption: "Blood donation campaign", label: "Dhaka University", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMz41jWSORNjiVxduohJuUKiuWwWklxOWPMKMEVJyQQw&s=10' },
+  { caption: "Cost free necessary goods donation", label: "Banani, Dhaka", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShM_VtGxQXJGvgbtSrCveR2xfthHBkGulf8uIGd1Pf7Q&s=10' },
+  { caption: "Food donation run", label: "Rangamati", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW4sJ8wlaBmDNe4uIj0MkcqpguvPetveuJXFCF2mR3Gg&s=10' },
+  { caption: "Free medical checkup camp", label: "Sirajgonj", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlB1hfmlZLmOM2-9RvRK0ve-_9b7mS-duBNoaBgVlsrg&s=10' },
 ];
 
 export function Gallery() {

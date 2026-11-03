@@ -51,7 +51,7 @@ export function Banner() {
             </h1>
 
             <p className="max-w-xl text-base text-muted-foreground md:text-lg">
-              HelpingHands connects volunteers, donors, and organizers for
+              WeCare connects volunteers, donors, and organizers for
               donation runs, cloth distribution, neighborhood cleanups, and
               free medical treatment — so no one in the community is left
               behind.

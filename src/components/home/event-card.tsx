@@ -27,7 +27,7 @@ const EventCard = ({ event }: EventCardProps) => {
         />
 
         <span className="absolute left-4 top-4 rounded-full bg-green-600 px-4 py-1.5 text-xs font-semibold text-white">
-          Free Treatment
+          {event.type}
         </span>
       </div>
 
@@ -35,10 +35,7 @@ const EventCard = ({ event }: EventCardProps) => {
       <div className="space-y-4 p-5">
 
         <div>
-          <div className="mb-2 flex items-center gap-2 text-sm font-medium text-green-700">
-            <HeartPulse size={17} />
-            Healthcare Campaign
-          </div>
+         
 
           <h2 className="text-xl font-bold text-gray-900 transition-colors group-hover:text-green-700">
             {event.title}

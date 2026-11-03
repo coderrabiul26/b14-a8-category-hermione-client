@@ -30,9 +30,9 @@ const FEATURES = [
   },
   {
     icon: Wallet,
-    title: "Transparent Giving",
+    title: "Create your event",
     description:
-      "Track what was donated, distributed, and spent for each campaign — trust built in the open.",
+      "Create your event and make a public platform to help the people as you want. You are not alone here and can manage the event with your community.",
     tone: "bg-chart-3/10 text-chart-3",
   },
 ];
@@ -48,7 +48,7 @@ export function Features() {
           Everything a helping community needs
         </h2>
         <p className="max-w-xl text-muted-foreground">
-          HelpingHands is built so organizing good work feels as easy as
+          WeCare is built so organizing good work feels as easy as
           showing up for it.
         </p>
       </header>

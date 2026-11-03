@@ -77,7 +77,7 @@ export function Navbar() {
       type: "success",
       timeout: 3000,
     });
-    router.push("/");
+    router.push("/signin");
     router.refresh();
   };
 
@@ -170,25 +170,8 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <div className="flex items-center justify-between rounded-lg px-3 py-2.5">
-              <span className="text-sm font-semibold text-muted-foreground">
-                Theme
-              </span>
-              <ThemeToggle />
-            </div>
-            {isPending ? null : user ? (
-              <div className="mt-1 flex items-center gap-1">
-                <UserAvatarMenu user={user} />
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  aria-label="Logout"
-                  onClick={handleLogout}
-                >
-                  <LogOut className="size-5" />
-                </Button>
-              </div>
-            ) : (
+           
+            {isPending ? null : user ? null : (
               <Link href={'/signin'}><Button size="lg" className="mt-1">
                 <LogIn data-icon="inline-start" />
                 Login
