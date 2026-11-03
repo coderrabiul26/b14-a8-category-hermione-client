@@ -58,11 +58,11 @@ export function Banner() {
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
-              <Button nativeButton={false} size="lg" className="px-6" render={<Link href="/events" />}>
+              <Button nativeButton={false} size="lg" className="px-6" render={<Link href="/signin" />}>
                 Join an Event
                 <ArrowRight data-icon="inline-end" />
               </Button>
-              <Button nativeButton={false} size="lg" variant="outline" className="px-6" render={<Link href="/events" />}>
+              <Button nativeButton={false} size="lg" variant="outline" className="px-6" render={<Link href="/signin" />}>
                 Donate Now
               </Button>
             </div>
