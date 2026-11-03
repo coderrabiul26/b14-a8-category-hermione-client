@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 b14-a8-category-hermione
 
-## Getting Started
+**প্রয়োজনীয় পণ্যের দাম এক নজরে।**
 
-First, run the development server:
+BazarDor is a web application that allows users to explore daily essential product prices, browse products by category, compare prices, and view detailed product information.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🛠️ Technologies Used
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Next.js
+- React
+- JavaScript
+- Tailwind CSS
+- Better Auth
+- MongoDB
+- React Hot Toast
+- REST API
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Responsive design for mobile, tablet, and desktop.
+2. Display essential products with Bengali names and prices.
+3. Browse products by category.
+4. Sort products by price: low to high and high to low.
+5. View detailed product information and market prices.
+6. User authentication with email/password and social login.
+7. Protected product detail pages.
+8. Skeleton loading and toast notifications.
+9. Custom 404 page for invalid routes.
+10. User profile information update.
 
-## Learn More
+## 🚀 Live Demo
 
-To learn more about Next.js, take a look at the following resources:
+- **Live Website:** https://b14-a7-bazar-dor-umber.vercel.app/
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **GitHub Repository:** https://github.com/coderrabiul26/b14-a7-bazar-dor.git
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Project:** B14-A7 Bazar Dor 
