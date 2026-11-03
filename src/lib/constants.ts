@@ -1,1 +1,1 @@
-export const SITE_NAME = "HelpingHands";
+export const SITE_NAME = "WeCare";
