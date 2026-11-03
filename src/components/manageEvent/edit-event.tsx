@@ -78,7 +78,7 @@ const EditEvent = ({ event }: TEditEventProps) => {
       };
 
       const res = await fetch(
-        `http://localhost:5000/editEvent/${event._id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/editEvent/${event._id}`,
         {
           method: "PATCH",
           headers: {

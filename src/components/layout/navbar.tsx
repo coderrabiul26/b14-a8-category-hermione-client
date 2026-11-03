@@ -36,8 +36,6 @@ import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 
-export const SITE_NAME = "HelpingHands";
-
 const NAV_LINKS = [{ label: "Upcoming Events", icon: CalendarDays, href: "/upcomingEvent" }];
 
 const USER_LINKS = [

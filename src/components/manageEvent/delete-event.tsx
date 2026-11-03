@@ -25,7 +25,7 @@ const DeleteEvent = ({ event }: TDeleteEventProps) => {
      const router = useRouter();   
 
     const handleDeleteEvent=async()=>{
-        const res= await fetch(`http://localhost:5000/deleteEvent/${event._id}`, {
+        const res= await fetch(`${process.env.NEXT_PUBLIC_API_URL}/deleteEvent/${event._id}`, {
             method: 'DELETE',  
         })
         const data= await res.json()

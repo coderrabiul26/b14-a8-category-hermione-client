@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Josefin_Sans } from "next/font/google";
-import { Navbar, SITE_NAME } from "@/components/layout/navbar";
+import { Navbar } from "@/components/layout/navbar";
+import { SITE_NAME } from "@/lib/constants";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toast";
 import { Footer } from "@/components/layout/footer";

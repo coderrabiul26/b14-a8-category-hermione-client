@@ -45,7 +45,7 @@ export function useJoinEvent(eventData: UpcomingEvent) {
         joinedDate: new Date(),
       };
 
-      const res = await fetch("http://localhost:5000/joinedEvent", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/joinedEvent`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

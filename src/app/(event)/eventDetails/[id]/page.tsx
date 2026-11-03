@@ -31,7 +31,7 @@ const EventDetailsPage = async ({
   const { id } = await params;
 
   const res = await fetch(
-    `http://localhost:5000/eventDetails/${id}`
+    `${process.env.NEXT_PUBLIC_API_URL}/eventDetails/${id}`
   );
 
   if (!res.ok) {

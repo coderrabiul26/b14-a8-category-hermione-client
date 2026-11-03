@@ -74,7 +74,7 @@ export default function CreateEventPage() {
     const token=await getTokenFromClient()
 
     try {
-      const res = await fetch("http://localhost:5000/createEvent", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/createEvent`, {
         method: "POST",
         headers: { "Content-Type": "application/json",
           authorization: `Bearer ${token}`

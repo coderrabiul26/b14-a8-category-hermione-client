@@ -3,7 +3,7 @@ import { UpcomingEvent } from "@/lib/type";
 import { filterUpcomingEvents } from "@/lib/event-date";
 
 export default async function EventsPage() {
-  const res= await fetch('http://localhost:5000/upcomingEvent')
+  const res= await fetch(`${process.env.NEXT_PUBLIC_API_URL}/upcomingEvent`)
   const eventData: UpcomingEvent[] = await res.json()
 
   // No past-date events on the listing.
